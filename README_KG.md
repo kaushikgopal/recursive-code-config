@@ -12,10 +12,10 @@ git pull upstream main
 # setup one time
 
 ```
-python -m venv venv             # make a virtual environment called "venv"
+python3 -m venv venv             # make a virtual environment called "venv"
 bash
 source venv/bin/activate            # activate the virtual environment
-pip install -r requirements.txt     # install dependencies
+python3 -m pip3 install -r requirements.txt     # install dependencies
 ```
 
 # build the font
@@ -23,5 +23,5 @@ pip install -r requirements.txt     # install dependencies
 ```
 bash
 source venv/bin/activate        # activate the virtual environment if you haven’t already
-python scripts/instantiate-code-fonts.py premade-configs/config.kg.yaml font-data/Recursive_VF_1.085.ttf
+python3 scripts/instantiate-code-fonts.py premade-configs/config.kg.yaml font-data/Recursive_VF_1.085.ttf
 ```
