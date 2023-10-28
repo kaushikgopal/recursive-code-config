@@ -42,14 +42,14 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0.8
-    wght: 400
+    wght: 375
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
-    CASL: 1
-    wght: 400
+    CASL: 0.8
+    wght: 375
     slnt: -10
     CRSV: 0
 
@@ -62,7 +62,7 @@ Fonts:
 
   Medium Italic:
     MONO: 1
-    CASL: 1
+    CASL: 0.8
     wght: 450
     slnt: -10
     CRSV: 0
@@ -76,7 +76,7 @@ Fonts:
 
   Semi Bold Italic:
     MONO: 1
-    CASL: 1
+    CASL: 0.8
     wght: 500
     slnt: -10
     CRSV: 0
@@ -90,7 +90,7 @@ Fonts:
 
   Bold Italic:
     MONO: 1
-    CASL: 1
+    CASL: 0.8
     wght: 600
     slnt: -10
     CRSV: 1
