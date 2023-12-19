@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "19"
+Family Name: "20"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -48,9 +48,9 @@ Fonts:
 
   Italic:
     MONO: 1
-    CASL: 0.4
+    CASL: 0.5
     wght: 375
-    slnt: -10
+    slnt: -11
     CRSV: 0
 
   Medium:
@@ -62,9 +62,9 @@ Fonts:
 
   Medium Italic:
     MONO: 1
-    CASL: 0.4
+    CASL: 0.5
     wght: 450
-    slnt: -10
+    slnt: -11
     CRSV: 0
 
   Semi Bold:
@@ -76,9 +76,9 @@ Fonts:
 
   Semi Bold Italic:
     MONO: 1
-    CASL: 0.4
+    CASL: 0.5
     wght: 500
-    slnt: -10
+    slnt: -11
     CRSV: 0
 
   Bold:
@@ -90,9 +90,9 @@ Fonts:
 
   Bold Italic:
     MONO: 1
-    CASL: 0.4
+    CASL: 0.5
     wght: 600
-    slnt: -10
+    slnt: -11
     CRSV: 1
 
 # -----------------------------------------------------------------------------
