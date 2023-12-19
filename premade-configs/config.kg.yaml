@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "21"
+Family Name: "22"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -42,7 +42,7 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0.8
-    wght: 400
+    wght: 375
     slnt: 0
     CRSV: 0
 
