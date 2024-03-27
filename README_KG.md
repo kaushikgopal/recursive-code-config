@@ -12,10 +12,9 @@ git pull upstream main
 # setup one time
 
 ```
-python3 -m venv venv             # make a virtual environment called "venv"
-bash
+python3.11 -m venv venv                # make a virtual environment called "venv"
 source venv/bin/activate            # activate the virtual environment
-python3 -m pip3 install -r requirements.txt     # install dependencies
+pip install -r requirements.txt     # install dependencies
 ```
 
 # build the font

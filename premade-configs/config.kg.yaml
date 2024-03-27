@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "KG 23"
+Family Name: "24"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -41,49 +41,49 @@ Fonts:
 
   Regular:
     MONO: 1
-    CASL: 0.8
+    CASL: 1
     wght: 375
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
-    CASL: 0.7
+    CASL: 1
     wght: 375
     slnt: -11
     CRSV: 0
 
   Medium:
     MONO: 1
-    CASL: 0.8
+    CASL: 1
     wght: 450
     slnt: 0
     CRSV: 0
 
   Medium Italic:
     MONO: 1
-    CASL: 0.7
+    CASL: 1
     wght: 425
     slnt: -11
     CRSV: 0
 
   Semi Bold:
     MONO: 1
-    CASL: 0.8
+    CASL: 1
     wght: 550
     slnt: 0
     CRSV: 0
 
   Semi Bold Italic:
     MONO: 1
-    CASL: 0.7
+    CASL: 1
     wght: 475
     slnt: -11
-    CRSV: 0
+    CRSV: 1
 
   Bold:
     MONO: 1
-    CASL: 0.8
+    CASL: 1
     wght: 650
     slnt: 0
     CRSV: 0
@@ -108,16 +108,16 @@ Code Ligatures: True
 Features:
 - dlig # Code ligatures
 - ss02 # Single story g
-- ss04 # Simplified i
+- ss03 # Simplified f
+#- ss04 # Simplified i                  # doesn't currently work
+- ss05 # Simplified l
+- ss06 # Simplified r
+#- ss07 # Simplified italic diagonals   # doesn't currently work
 - ss08 # No-serif L and Z
+#- ss09 # Simplified 6 & 9
 - ss12 # Simplified @
 - frac # fractions
 - case # Uppercase punctuation
 
-#- ss03 # Simplified f
-#- ss05 # Simplified l
-#- ss06 # Simplified r
-#- ss07 # Simplified italic diagonals
-#- ss09 # Simplified 6 & 9
 
 # That’s it! See README for next steps.
