@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "29"
+Family Name: "30"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -57,14 +57,14 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0
-    wght: 375
+    wght: 380
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
     CASL: 0.5
-    wght: 375
+    wght: 380
     slnt: -15
     CRSV: 1
 
@@ -123,14 +123,14 @@ Code Ligatures: True
 Features:
 #- ss01 # Simplified a
 - ss02 # Single story g
-#- ss03 # Simplified f
+- ss03 # Simplified f
 #- ss04 # Simplified i                  # doesn't currently work
 - ss05 # Simplified l
 - ss06 # Simplified r
 #- ss07 # Simplified italic diagonals   # doesn't currently work
 - ss08 # No-serif L and Z
-#- ss09 # Simplified 6 & 9
-#- ss11 # Simplified 1
+- ss09 # Simplified 6 & 9
+- ss11 # Simplified 1
 - ss12 # Simplified @
 - frac # fractions
 - case # Uppercase punctuation
