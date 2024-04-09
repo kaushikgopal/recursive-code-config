@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "28 S"
+Family Name: "28 S2"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -57,14 +57,14 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0
-    wght: 350
+    wght: 365
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
     CASL: 0.5
-    wght: 350
+    wght: 365
     slnt: -15
     CRSV: 1
 
