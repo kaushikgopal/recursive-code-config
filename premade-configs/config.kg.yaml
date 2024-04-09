@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "27"
+Family Name: "28 S"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -42,30 +42,30 @@ Fonts:
   Light:
     MONO: 1
     CASL: 0
-    wght: 200
+    wght: 250
     slnt: 0
     CRSV: 0
 
   Light Italic:
     MONO: 1
-    CASL: 0
-    wght: 200
-    slnt: 0
+    CASL: 0.5
+    wght: 250
+    slnt: -15
     CRSV: 0
 
 
   Regular:
     MONO: 1
     CASL: 0
-    wght: 375
+    wght: 350
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
-    CASL: 0.1
-    wght: 375
-    slnt: -11
+    CASL: 0.5
+    wght: 350
+    slnt: -15
     CRSV: 1
 
   Medium:
@@ -77,9 +77,9 @@ Fonts:
 
   Medium Italic:
     MONO: 1
-    CASL: 0.1
+    CASL: 0.5
     wght: 500
-    slnt: -11
+    slnt: -15
     CRSV: 1
 
   Bold:
@@ -91,9 +91,9 @@ Fonts:
 
   Bold Italic:
     MONO: 1
-    CASL: 0.1
+    CASL: 0.5
     wght: 700
-    slnt: -11
+    slnt: -15
     CRSV: 1
 
   Black:
@@ -105,9 +105,9 @@ Fonts:
 
   Black Italic:
     MONO: 1
-    CASL: 0.1
+    CASL: 0.5
     wght: 900
-    slnt: -11
+    slnt: -15
     CRSV: 1
 
 # -----------------------------------------------------------------------------
@@ -121,15 +121,16 @@ Code Ligatures: True
 
 # (Keep the hyphen before each list item)
 Features:
-- dlig # Code ligatures
+- ss01 # Simplified a
 - ss02 # Single story g
-- ss03 # Simplified f
+#- ss03 # Simplified f
 #- ss04 # Simplified i                  # doesn't currently work
 - ss05 # Simplified l
 - ss06 # Simplified r
 #- ss07 # Simplified italic diagonals   # doesn't currently work
-- ss08 # No-serif L and Z
+#- ss08 # No-serif L and Z
 #- ss09 # Simplified 6 & 9
+#- ss11 # Simplified 1
 - ss12 # Simplified @
 - frac # fractions
 - case # Uppercase punctuation
