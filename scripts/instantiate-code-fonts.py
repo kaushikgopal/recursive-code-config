@@ -76,8 +76,8 @@ def setFontNameID(font, ID, newName):
 oldName = "Recursive"
 
 def splitFont(
-        outputDirectory=f"RecursiveKG{fontOptions['Family Name']}".replace(" ",""),
-        newName="Recursive KG",
+        outputDirectory=f"Recursive{fontOptions['Family Name']}".replace(" ",""),
+        newName="Recursive",
 ):
 
     # access font as TTFont object
