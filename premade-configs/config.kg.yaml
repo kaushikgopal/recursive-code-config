@@ -26,7 +26,7 @@
 # major   30
 # version 2
 # style   C (casual) or default (linear)
-Family Name: "KG 30.2"
+Family Name: "KG 30.3"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -51,7 +51,7 @@ Fonts:
 
   Light Italic:
     MONO: 1
-    CASL: 0.5
+    CASL: 0.2
     wght: 275
     slnt: -15
     CRSV: 0
@@ -66,7 +66,7 @@ Fonts:
 
   Italic:
     MONO: 1
-    CASL: 0.5
+    CASL: 0.2
     wght: 375
     slnt: -15
     CRSV: 1
@@ -80,7 +80,7 @@ Fonts:
 
   Medium Italic:
     MONO: 1
-    CASL: 0.5
+    CASL: 0.2
     wght: 500
     slnt: -15
     CRSV: 1
@@ -94,7 +94,7 @@ Fonts:
 
   Bold Italic:
     MONO: 1
-    CASL: 0.5
+    CASL: 0.2
     wght: 700
     slnt: -15
     CRSV: 1
@@ -108,7 +108,7 @@ Fonts:
 
   Black Italic:
     MONO: 1
-    CASL: 0.5
+    CASL: 0.2
     wght: 900
     slnt: -15
     CRSV: 1
