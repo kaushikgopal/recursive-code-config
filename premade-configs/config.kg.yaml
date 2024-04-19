@@ -26,7 +26,7 @@
 # major   30
 # version 2
 # style   C (casual) or default (linear)
-Family Name: "KG 30.4"
+Family Name: "KG 31.0"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -133,7 +133,7 @@ Features:
 #- ss07 # Simplified italic diagonals   # doesn't currently work
 - ss08 # No-serif L and Z
 - ss09 # Simplified 6 & 9
-- ss11 # Simplified 1
+#- ss11 # Simplified 1
 - ss12 # Simplified @
 - frac # fractions
 - case # Uppercase punctuation
