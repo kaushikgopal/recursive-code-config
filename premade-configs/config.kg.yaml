@@ -26,7 +26,7 @@
 # major   30
 # version 2
 # style   C (casual) or default (linear)
-Family Name: "KG 31.0"
+Family Name: "KG 31.1"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -126,7 +126,7 @@ Code Ligatures: True
 Features:
 #- ss01 # Simplified a
 - ss02 # Single story g
-- ss03 # Simplified f
+#- ss03 # Simplified f
 #- ss04 # Simplified i                  # doesn't currently work
 - ss05 # Simplified l
 - ss06 # Simplified r
