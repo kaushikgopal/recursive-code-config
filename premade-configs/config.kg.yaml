@@ -23,10 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-# major   30
-# version 2
-# style   C (casual) or default (linear)
-Family Name: "KG 31.2"
+Family Name: "KG"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -41,74 +38,72 @@ Family Name: "KG 31.2"
 # CRSV: 0 (0 for Roman, 1 for Cursive)
 
 Fonts:
+  # Light:
+  #   MONO: 1
+  #   CASL: 0.5
+  #   wght: 275
+  #   slnt: 0
+  #   CRSV: 0
 
-  Light:
-    MONO: 1
-    CASL: 0
-    wght: 275
-    slnt: 0
-    CRSV: 0
-
-  Light Italic:
-    MONO: 1
-    CASL: 0.2
-    wght: 275
-    slnt: -15
-    CRSV: 0
-
+  # Light Italic:
+  #   MONO: 1
+  #   CASL: 0.5
+  #   wght: 275
+  #   slnt: -15
+  #   CRSV: 0
 
   Regular:
     MONO: 1
-    CASL: 0
-    wght: 375
+    CASL: 0.5
+    wght: 400
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
-    CASL: 0.2
-    wght: 375
+    CASL: 0.5
+    wght: 400
     slnt: -15
     CRSV: 0
 
   Medium:
     MONO: 1
-    CASL: 0
+    CASL: 0.5
     wght: 500
     slnt: 0
     CRSV: 0
 
   Medium Italic:
     MONO: 1
-    CASL: 0.2
+    CASL: 0.5
     wght: 500
     slnt: -15
     CRSV: 0
 
   Bold:
     MONO: 1
-    CASL: 0
+    CASL: 0.5
     wght: 700
     slnt: 0
     CRSV: 0
 
   Bold Italic:
     MONO: 1
-    CASL: 0.2
+    CASL: 0.5
     wght: 700
     slnt: -15
     CRSV: 0
 
   Black:
     MONO: 1
-    CASL: 0
+    CASL: 0.5
     wght: 900
     slnt: 0
     CRSV: 0
 
   Black Italic:
     MONO: 1
-    CASL: 0.2
+    CASL: 0.5
     wght: 900
     slnt: -15
     CRSV: 0
@@ -124,19 +119,18 @@ Code Ligatures: True
 
 # (Keep the hyphen before each list item)
 Features:
-#- ss01 # Simplified a
-- ss02 # Single story g
-#- ss03 # Simplified f
-#- ss04 # Simplified i                  # doesn't currently work
-- ss05 # Simplified l
-#- ss06 # Simplified r
-#- ss07 # Simplified italic diagonals   # doesn't currently work
-- ss08 # No-serif L and Z
-- ss09 # Simplified 6 & 9
-#- ss11 # Simplified 1
-- ss12 # Simplified @
-- frac # fractions
-- case # Uppercase punctuation
-
-
+  #- ss01 # Simplified a
+  - ss02 # Single story g
+  - aalt # alternative characters (l i f r)  # doesn't work
+  - ss03 # Simplified f
+  - ss04 # Simplified i                      # doesn't work
+  - ss05 # Simplified l
+  - ss06 # Simplified r
+  #- ss07 # Simplified italic diagonals      # doesn't work
+  - ss08 # No-serif L and Z
+  - ss09 # Simplified 6 & 9
+  - ss11 # Simplified 1
+  - ss12 # Simplified @
+  - frac # fractions
+  # - case # Uppercase punctuation
 # That’s it! See README for next steps.
