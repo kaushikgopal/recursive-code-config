@@ -15,17 +15,14 @@ import subprocess
 import shutil
 import yaml
 import sys
-import logging
 import ttfautohint
 from fontTools.varLib import instancer
 from fontTools.varLib.instancer import OverlapMode
-from opentype_feature_freezer import cli as pyftfeatfreeze
+from fontTools.varLib.instancer.featureVars import instantiateFeatureVariations
 from dlig2calt import dlig2calt
 from mergePowerlineFont import mergePowerlineFont
 from ttfautohint.options import USER_OPTIONS as ttfautohint_options
-
-# prevents over-active warning logs
-logging.getLogger("opentype_feature_freezer").setLevel(logging.ERROR)
+from fontfreeze_activation import freeze_features
 
 # if you provide a custom config path, this picks it up
 try:
@@ -92,17 +89,21 @@ def splitFont(
 
         print("\n--------------------------------------------------------------------------------------\n" + instance)
 
+        axisLocation = {
+            "wght": fontOptions["Fonts"][instance]["wght"],
+            "CASL": fontOptions["Fonts"][instance]["CASL"],
+            "MONO": fontOptions["Fonts"][instance]["MONO"],
+            "slnt": fontOptions["Fonts"][instance]["slnt"],
+            "CRSV": fontOptions["Fonts"][instance]["CRSV"],
+        }
+
         instanceFont = instancer.instantiateVariableFont(
             varfont,
-            {
-                "wght": fontOptions["Fonts"][instance]["wght"],
-                "CASL": fontOptions["Fonts"][instance]["CASL"],
-                "MONO": fontOptions["Fonts"][instance]["MONO"],
-                "slnt": fontOptions["Fonts"][instance]["slnt"],
-                "CRSV": fontOptions["Fonts"][instance]["CRSV"],
-            },
+            axisLocation,
             overlap=OverlapMode.REMOVE
         )
+
+        instantiateFeatureVariations(instanceFont, axisLocation)
 
         # UPDATE NAME ID 6, postscript name
         currentPsName = getFontNameID(instanceFont, 6)
@@ -155,8 +156,15 @@ def splitFont(
         # -------------------------------------------------------
         # Code font special stuff in post processing
 
-        # freeze in rvrn & stylistic set features with pyftfeatfreeze
-        pyftfeatfreeze.main([f"--features=rvrn,{','.join(fontOptions['Features'])}", outputPath, outputPath])
+        # Freeze stylistic set features (rvrn is already baked in via instantiateFeatureVariations)
+        # Note: ss04 and similar features use Type 2 (Multiple Substitution) lookups
+        if fontOptions["Features"]:
+            freeze_features(
+                outputPath,
+                fontOptions["Features"],
+                target_feature="calt",
+                single_sub=True,
+            )
 
         if fontOptions['Code Ligatures']:
             # swap dlig2calt to make code ligatures work in old code editor apps
