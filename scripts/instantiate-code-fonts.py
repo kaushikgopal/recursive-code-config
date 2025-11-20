@@ -156,15 +156,15 @@ def splitFont(
         # -------------------------------------------------------
         # Code font special stuff in post processing
 
-        # Freeze stylistic set features (rvrn is already baked in via instantiateFeatureVariations)
+        # Freeze rvrn and stylistic set features
         # Note: ss04 and similar features use Type 2 (Multiple Substitution) lookups
-        if fontOptions["Features"]:
-            freeze_features(
-                outputPath,
-                fontOptions["Features"],
-                target_feature="calt",
-                single_sub=True,
-            )
+        features_to_freeze = ["rvrn"] + fontOptions["Features"]
+        freeze_features(
+            outputPath,
+            features_to_freeze,
+            target_feature="calt",
+            single_sub=True,
+        )
 
         if fontOptions['Code Ligatures']:
             # swap dlig2calt to make code ligatures work in old code editor apps
