@@ -23,7 +23,7 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "KG 33"
+Family Name: "KG 34"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -54,42 +54,42 @@ Fonts:
 
   Regular:
     MONO: 1
-    CASL: 0.3
+    CASL: 0.2
     wght: 425
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
-    CASL: 0.3
+    CASL: 0.2
     wght: 425
     slnt: -15
     CRSV: 0
 
   Medium:
     MONO: 1
-    CASL: 0.3
+    CASL: 0.2
     wght: 500
     slnt: 0
     CRSV: 0
 
   Medium Italic:
     MONO: 1
-    CASL: 0.3
+    CASL: 0.2
     wght: 500
     slnt: -15
     CRSV: 0
 
   Bold:
     MONO: 1
-    CASL: 0.3
+    CASL: 0.2
     wght: 700
     slnt: 0
     CRSV: 0
 
   Bold Italic:
     MONO: 1
-    CASL: 0.3
+    CASL: 0.2
     wght: 700
     slnt: -15
     CRSV: 0
@@ -121,7 +121,7 @@ Code Ligatures: True
 Features:
   # - ss01 # Single story a
   # - ss02 # Single story g
-  # - ss03 # Simplified f
+  - ss03 # Simplified f
   # - ss04 # Simplified i                      # doesn't work
   - ss05 # Simplified l
   - ss06 # Simplified r
