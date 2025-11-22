@@ -20,5 +20,9 @@ pip install -r requirements.txt     # install dependencies
 ```
 bash
 source venv/bin/activate        # activate the virtual environment if you haven’t already
+
+# remove old installed fonts (macOS only; adjust for your OS)
+trash /Users/kg/Library/Fonts/RecursiveKG*; trash fonts/RecursiveKG*
+
 python scripts/instantiate-code-fonts.py premade-configs/config.kg.yaml font-data/Recursive_VF_1.085.ttf
 ```
