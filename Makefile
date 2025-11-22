@@ -63,7 +63,7 @@ package: build ## Package fonts and create GitHub release for homebrew
 	@sed -i '' 's/sha256 ".*"/sha256 "$(SHA)"/' ../homebrew-tools/Casks/font-recursive-kg.rb
 	@sed -i '' 's|url ".*"|url "https://github.com/kaushikgopal/recursive-code-config/releases/download/v$(VERSION)/recursive-$(VERSION).$(FONT_VERSION).zip"|' ../homebrew-tools/Casks/font-recursive-kg.rb
 	@echo "   Updating font paths..."
-	@sed -i '' 's|font "RecursiveKG[0-9]*/RecursiveKG[0-9]*-\([^-]*\)-[0-9.]*\.ttf"|font "RecursiveKG$(VERSION)/RecursiveKG$(VERSION)-\1-$(FONT_VERSION).ttf"|g' ../homebrew-tools/Casks/font-recursive-kg.rb
+	@sed -i '' 's|font "[^/]*/RecursiveKG[0-9]*-\([^-]*\)-[0-9.]*\.ttf"|font "RecursiveKG$(VERSION)/RecursiveKG$(VERSION)-\1-$(FONT_VERSION).ttf"|g' ../homebrew-tools/Casks/font-recursive-kg.rb
 	@echo "   Committing and pushing homebrew-tools..."
 	@cd ../homebrew-tools && git add Casks/font-recursive-kg.rb
 	@cd ../homebrew-tools && git commit -m "update: recursive kg $(VERSION)"
