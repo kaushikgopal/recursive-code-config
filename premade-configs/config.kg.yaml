@@ -56,14 +56,14 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0.25
-    wght: 425
+    wght: 410
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
     CASL: 0.25
-    wght: 425
+    wght: 410
     slnt: -15
     CRSV: 0
 
