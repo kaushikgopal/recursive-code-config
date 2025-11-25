@@ -21,25 +21,25 @@ setup:	## Set up Python environment and install dependencies
 
 build:	## Build and install Recursive code fonts on Mac
 	@echo "❌ removing existing Recursive fonts on Mac..."
-	@rm -rf ~/Library/Fonts/"RecursiveKG*"
+	@rm -rf ~/Library/Fonts/RecursiveKG* 2>/dev/null || true
 	@echo "❌ removing existing Recursive fonts in project..."
-	@rm -rf fonts/"RecursiveKG*"
+	@rm -rf fonts/RecursiveKG* 2>/dev/null || true
 	@echo "🔨 Building Recursive fonts..."
 	@venv/bin/python scripts/instantiate-code-fonts.py premade-configs/config.kg.yaml font-data/Recursive_VF_1.085.ttf
 	@echo "✅ Installing Recursive fonts on Mac..."
-	@cp fonts/RecursiveKG*/*.ttf ~/Library/Fonts/
+	@cp fonts/RecursiveKG/*.ttf ~/Library/Fonts/
 
 # === Package Targets ===
 
 package: build ## Package fonts and create GitHub release for homebrew
 	@echo "📦 Starting package process..."
-	@$(eval VERSION := $(shell grep "Family Name:" premade-configs/config.kg.yaml | sed 's/.*KG \([0-9]*\).*/\1/'))
-	@$(eval FONT_VERSION := $(shell grep "Base Recursive Version:" premade-configs/config.kg.yaml | sed 's/.*"\([0-9.]*\)".*/\1/'))
+	@$(eval VERSION := $(shell grep "Version:" premade-configs/config.kg.yaml | sed 's/.*"\([^"]*\)".*/\1/'))
+	@$(eval FONT_VERSION := $(shell ls font-data/Recursive_VF_*.ttf | sed 's/.*_VF_\([0-9.]*\)\.ttf/\1/'))
 	@echo "📋 Version: $(VERSION), Font Version: $(FONT_VERSION)"
 	@echo "🗜️  Creating zip file..."
-	@cd fonts && zip -r -X ../recursive-$(VERSION).$(FONT_VERSION).zip RecursiveKG$(VERSION)/
+	@cd fonts && zip -r -X ../recursive-$(VERSION).zip RecursiveKG/
 	@echo "🔐 Calculating SHA256..."
-	@$(eval SHA := $(shell shasum -a 256 recursive-$(VERSION).$(FONT_VERSION).zip | awk '{print $$1}'))
+	@$(eval SHA := $(shell shasum -a 256 recursive-$(VERSION).zip | awk '{print $$1}'))
 	@echo "$(SHA)" | pbcopy
 	@echo "   SHA256: $(SHA) (copied to clipboard)"
 	@echo "📤 Committing and pushing changes to recursive-code-config..."
@@ -50,8 +50,8 @@ package: build ## Package fonts and create GitHub release for homebrew
 	@gh release create v$(VERSION) \
 		--repo kaushikgopal/recursive-code-config \
 		--title "Recursive KG $(VERSION)" \
-		--notes "Recursive KG $(VERSION) - Font version $(FONT_VERSION)" \
-		recursive-$(VERSION).$(FONT_VERSION).zip
+		--notes "Recursive KG $(VERSION)" \
+		recursive-$(VERSION).zip
 	@echo "🍺 Updating homebrew formula..."
 	@if [ ! -d "../homebrew-tools" ]; then \
 		echo "   Cloning homebrew-tools repository..."; \
@@ -59,11 +59,11 @@ package: build ## Package fonts and create GitHub release for homebrew
 	fi
 	@cd ../homebrew-tools && git pull origin main || git pull origin master
 	@echo "   Updating version, sha256, and url..."
-	@sed -i '' 's/version ".*"/version "$(VERSION).$(FONT_VERSION)"/' ../homebrew-tools/Casks/font-recursive-kg.rb
+	@sed -i '' 's/version ".*"/version "$(VERSION)"/' ../homebrew-tools/Casks/font-recursive-kg.rb
 	@sed -i '' 's/sha256 ".*"/sha256 "$(SHA)"/' ../homebrew-tools/Casks/font-recursive-kg.rb
-	@sed -i '' 's|url ".*"|url "https://github.com/kaushikgopal/recursive-code-config/releases/download/v$(VERSION)/recursive-$(VERSION).$(FONT_VERSION).zip"|' ../homebrew-tools/Casks/font-recursive-kg.rb
+	@sed -i '' 's|url ".*"|url "https://github.com/kaushikgopal/recursive-code-config/releases/download/v$(VERSION)/recursive-$(VERSION).zip"|' ../homebrew-tools/Casks/font-recursive-kg.rb
 	@echo "   Updating font paths..."
-	@sed -i '' 's|font "[^/]*/RecursiveKG[0-9]*-\([^-]*\)-[0-9.]*\.ttf"|font "RecursiveKG$(VERSION)/RecursiveKG$(VERSION)-\1-$(FONT_VERSION).ttf"|g' ../homebrew-tools/Casks/font-recursive-kg.rb
+	@sed -i '' 's|font "[^/]*/RecursiveKG[0-9]*-\([^-]*\)-[0-9.]*\.ttf"|font "RecursiveKG/RecursiveKG-\1-$(FONT_VERSION).ttf"|g' ../homebrew-tools/Casks/font-recursive-kg.rb
 	@echo "   Committing and pushing homebrew-tools..."
 	@cd ../homebrew-tools && git add Casks/font-recursive-kg.rb
 	@cd ../homebrew-tools && git commit -m "update: recursive kg $(VERSION)"

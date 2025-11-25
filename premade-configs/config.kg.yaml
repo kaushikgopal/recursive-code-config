@@ -23,8 +23,9 @@
 # For a striking and inviting tone
 # web headlines, code snippets, command line interfaces
 
-Family Name: "KG 34"
-Base Recursive Version: "1.085"
+Family Name: "KG"
+# font version is derived from the VF source file (e.g., Recursive_VF_1.085.ttf)
+Version: "35"
 
 # -----------------------------------------------------------------------------
 # Font Styles
@@ -56,14 +57,14 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0.25
-    wght: 410
+    wght: 400
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
     CASL: 0.25
-    wght: 410
+    wght: 400
     slnt: -15
     CRSV: 0
 
