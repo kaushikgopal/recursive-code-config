@@ -52,7 +52,7 @@ Fonts:
   #   CASL: 0.2
   #   wght: 275
   #   slnt: -15
-  #   CRSV: 0
+  #   CRSV: 1
 
   Regular:
     MONO: 1
@@ -66,7 +66,7 @@ Fonts:
     CASL: 0.2
     wght: 400
     slnt: -15
-    CRSV: 0
+    CRSV: 1
 
   Medium:
     MONO: 1
@@ -80,7 +80,7 @@ Fonts:
     CASL: 0.2
     wght: 500
     slnt: -15
-    CRSV: 0
+    CRSV: 1
 
   Bold:
     MONO: 1
@@ -94,7 +94,7 @@ Fonts:
     CASL: 0.2
     wght: 700
     slnt: -15
-    CRSV: 0
+    CRSV: 1
 
   # Black:
   #   MONO: 1
@@ -108,7 +108,7 @@ Fonts:
   #   CASL: 0.2
   #   wght: 900
   #   slnt: -15
-  #   CRSV: 0
+  #   CRSV: 1
 
 # -----------------------------------------------------------------------------
 # Font Features
@@ -127,6 +127,7 @@ Features:
   # - ss04 # Simplified i
   - ss05 # Simplified l
   # - ss06 # Simplified r
+  - ss07 # Simplified italic diagonals
   - ss08 # No-serif L and Z
   - ss09 # Simplified 6 & 9
   - ss10 # Dotted 0
