@@ -57,14 +57,14 @@ Fonts:
   Regular:
     MONO: 1
     CASL: 0
-    wght: 400
+    wght: 375
     slnt: 0
     CRSV: 0
 
   Italic:
     MONO: 1
     CASL: 0
-    wght: 400
+    wght: 375
     slnt: -15
     CRSV: 1
 
@@ -125,8 +125,8 @@ Features:
   - ss02 # Single story g
   - ss03 # Simplified f
   # - ss04 # Simplified i
-  - ss05 # Simplified l
-  # - ss06 # Simplified r
+  # - ss05 # Simplified l
+  - ss06 # Simplified r
   - ss07 # Simplified italic diagonals
   - ss08 # No-serif L and Z
   - ss09 # Simplified 6 & 9
