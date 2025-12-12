@@ -111,6 +111,13 @@ Fonts:
   #   CRSV: 1
 
 # -----------------------------------------------------------------------------
+# Line Height
+
+# Multiplier for line height (1.0 = default, 1.2 = 20% more space between lines)
+# Adjusts the font's internal line gap metric
+Line Height Multiplier: 1.1
+
+# -----------------------------------------------------------------------------
 # Font Features
 
 # Freeze in code ligatures? True or False

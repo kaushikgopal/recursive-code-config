@@ -198,6 +198,29 @@ def splitFont(
         # Also in the OS/2 table, xAvgCharWidth should be set to 600 rather than 612 (612 is an average of glyphs in the "Mono" files which include wide ligatures).
         monoFont["OS/2"].xAvgCharWidth = 600
 
+        # Apply line height multiplier if specified
+        lineHeightMultiplier = fontOptions.get('Line Height Multiplier', 1.0)
+        if lineHeightMultiplier != 1.0:
+            os2 = monoFont["OS/2"]
+            hhea = monoFont["hhea"]
+
+            # Calculate original line height from typo metrics
+            # Line height = ascender - descender + lineGap (descender is negative)
+            originalLineHeight = os2.sTypoAscender - os2.sTypoDescender + os2.sTypoLineGap
+            newLineHeight = int(originalLineHeight * lineHeightMultiplier)
+
+            # Apply the difference to lineGap (keeps glyphs in same position)
+            newLineGap = newLineHeight - (os2.sTypoAscender - os2.sTypoDescender)
+            os2.sTypoLineGap = max(0, newLineGap)
+
+            # Update hhea table for legacy compatibility
+            hhea.lineGap = max(0, newLineGap)
+
+            print(f"\n\t• Line height multiplier: {lineHeightMultiplier}")
+            print(f"\t\t Original line height: {originalLineHeight}")
+            print(f"\t\t New line height: {newLineHeight}")
+            print(f"\t\t New line gap: {os2.sTypoLineGap}")
+
         # Code to fix fsSelection adapted from:
         # https://github.com/googlefonts/gftools/blob/a0b516d71f9e7988dfa45af2d0822ec3b6972be4/Lib/gftools/fix.py#L764
 
