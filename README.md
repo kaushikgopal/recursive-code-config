@@ -70,11 +70,12 @@ they mean in Recursive, opt-in the same way. Moxy adds two forward opt-in
 features on top:
 
 - `moxy` — turn **on** the Moxy letterform set: single-story `g`, simplified
-  `f r 6 9 1`, dotted `0`, fancy long-tail `Q`.
+  `f l 6 9 1`, italic diagonals, serifless `L` & `Z`, dotted `0`, fancy
+  long-tail `Q`.
 - `lilx` — turn **on** the Lilex borrowings: curvy parens, connected
   `|>` / `<|` bars, connected dashes, thin escape backslash.
-- `ss02 / ss03 / ss06 / ss09 / ss10 / ss11 / titl` — enable one letterform at
-  a time (these compose with `moxy`).
+- `ss02 / ss03 / ss05 / ss07 / ss08 / ss09 / ss10 / ss11 / titl` — enable one
+  letterform at a time (these compose with `moxy`).
 
 ```ini
 # full Moxy look from the Moxy variable font

@@ -5,8 +5,9 @@
 # way. Moxy adds two forward opt-in features on top:
 #
 #   moxy — bundle of Recursive letterform choices preferred for Moxy:
-#          single-story g (ss02), simplified f/r/6/9/1 (ss03/06/09/11),
-#          dotted 0 (ss10), fancy long-tail Q (titl). One toggle, full set.
+#          single-story g (ss02), simplified f/l/6/9/1 (ss03/05/09/11),
+#          italic diagonals (ss07), serifless L & Z (ss08), dotted 0 (ss10),
+#          fancy long-tail Q (titl). One toggle, full set.
 #   lilx — the Lilex borrowings: curvy parens, connected dashes/bars, thin
 #          escape backslash. (The 12 added arrows are always-on, not part of
 #          lilx.)
@@ -87,10 +88,10 @@ Moxy Bundle:
   - ss02 # Single story g
   - ss03 # Simplified f
   # - ss04 # Simplified i
-  # - ss05 # Simplified l
-  - ss06 # Simplified r
-  # - ss07 # Simplified italic diagonals
-  # - ss08 # No-serif L and Z  (NOT in Moxy's set — Moxy keeps serifed L & Z)
+  - ss05 # Simplified l
+  # - ss06 # Simplified r
+  - ss07 # Simplified italic diagonals (k w x y z)
+  - ss08 # No-serif L and Z
   - ss09 # Simplified 6 & 9
   - ss10 # Dotted 0
   - ss11 # Simplified 1

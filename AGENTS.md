@@ -11,7 +11,7 @@ with no toggles.
 
 | Feature | What it turns ON | Default |
 |---|---|---|
-| `moxy` | Recursive letterform set: single-story `g`, simp `f`/`r`/`6`/`9`/`1`, dotted `0`, fancy long-tail `Q` (bundles `ss02 ss03 ss06 ss09 ss10 ss11 titl`) | off |
+| `moxy` | Recursive letterform set: single-story `g`, simp `f`/`l`/`6`/`9`/`1`, italic diagonals, serifless `L`/`Z`, dotted `0`, fancy long-tail `Q` (bundles `ss02 ss03 ss05 ss07 ss08 ss09 ss10 ss11 titl`) | off |
 | `lilx` | Lilex borrowings: curvy parens, connected dashes/bars, thin escape backslash | off |
 
 - **Full Moxy look**: `font-feature = moxy, lilx`
@@ -37,6 +37,8 @@ Three scopes — say which:
 | L, Z | serifed (Recursive default) | — | ensure `ss08` is NOT in `Moxy Bundle:` | remove `ss08` from `Features:` |
 | L, Z | serifless | `ss08` | add `ss08` to `Moxy Bundle:` | add `ss08` to `Features:` |
 | f | simplified | `ss03` | add `ss03` to `Moxy Bundle:` | add `ss03` to `Features:` |
+| l | simplified | `ss05` | add `ss05` to `Moxy Bundle:` | add `ss05` to `Features:` |
+| k w x y z (italic) | simplified diagonals | `ss07` | add `ss07` to `Moxy Bundle:` | add `ss07` to `Features:` |
 | r | simplified | `ss06` | add `ss06` to `Moxy Bundle:` | add `ss06` to `Features:` |
 | 6, 9 | simplified | `ss09` | add `ss09` to `Moxy Bundle:` | add `ss09` to `Features:` |
 | 0 | dotted | `ss10` | add `ss10` to `Moxy Bundle:` | add `ss10` to `Features:` |
@@ -49,8 +51,10 @@ To REVERT a Moxy default back to Recursive: remove the row from `Moxy Bundle:`
 (VF) or `Features:` (static).
 
 Notes:
-- `ss04` (simp i), `ss05` (simp l), `ss07` (italic diagonals) exist but are
-  broken upstream (Recursive issue #4) — avoid unless confirmed fixed.
+- `ss04` (simp i) exists but is unconfirmed in Moxy — check before adding.
+  `ss05` (simp l) and `ss07` (italic diagonals) are now part of Moxy's
+  default bundle; the old "broken upstream, Recursive issue #4" note was
+  stale (Moxy's builds handle them).
 - In the VF, `moxy` bundles whatever is listed in `Moxy Bundle:`. Adding/removing
   a tag there changes what `moxy` turns on. Each tag also stays independently
   available under its own name.
