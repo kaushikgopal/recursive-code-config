@@ -48,7 +48,7 @@ Pure Mono: true
 Default Axis Location:
   MONO: 1
   CASL: 0
-  wght: 375
+  wght: 360
 
 # These replace Recursive's inherited fvar instances. Keeping the source instances
 # leaves Recursive PostScript names/style records in the Moxy VF, which confuses
@@ -59,12 +59,12 @@ Default Axis Location:
 Named Instances:
   # CASL=0 (Linear) — the fvar default lives here
   - { name: Light, CASL: 0, wght: 300, slnt: 0, CRSV: 0.5 }
-  - { name: Regular, CASL: 0, wght: 375, slnt: 0, CRSV: 0.5 }
+  - { name: Regular, CASL: 0, wght: 360, slnt: 0, CRSV: 0.5 }
   - { name: Medium, CASL: 0, wght: 500, slnt: 0, CRSV: 0.5 }
   - { name: Bold, CASL: 0, wght: 700, slnt: 0, CRSV: 0.5 }
   - { name: Black, CASL: 0, wght: 900, slnt: 0, CRSV: 0.5 }
   - { name: Light Italic, CASL: 0, wght: 300, slnt: -15, CRSV: 0.5 }
-  - { name: Italic, CASL: 0, wght: 375, slnt: -15, CRSV: 0.5 }
+  - { name: Italic, CASL: 0, wght: 360, slnt: -15, CRSV: 0.5 }
   - { name: Medium Italic, CASL: 0, wght: 500, slnt: -15, CRSV: 0.5 }
   - { name: Bold Italic, CASL: 0, wght: 700, slnt: -15, CRSV: 0.5 }
   - { name: Black Italic, CASL: 0, wght: 900, slnt: -15, CRSV: 0.5 }

@@ -69,7 +69,7 @@ FAMILY = "Moxy"
 # "Moxy-Regular" etc. if both are ever installed.
 PS_NAME = "Moxy-VF"
 DEFAULT_OUT = "fonts/Moxy-VF/Moxy[CASL,wght,slnt,CRSV].ttf"
-DEFAULT_AXIS_LOCATION = {"MONO": 1, "CASL": 0, "wght": 375}
+DEFAULT_AXIS_LOCATION = {"MONO": 1, "CASL": 0, "wght": 360}
 
 # OFL-1.1 license metadata baked into the name table (id 0/13/14), so the license
 # travels with the binary. Moxy derives from Recursive + Lilex (both OFL-1.1), so
@@ -525,12 +525,12 @@ def add_arrow_chars(font: TTFont, recursive_path: str) -> list[int]:
 # (subfamily name, wght, slnt, CRSV); MONO=1, CASL=0 for all.
 LINEAR_INSTANCES = [
     ("Light", 300, 0, 0.5),
-    ("Regular", 375, 0, 0.5),           # == the fvar default
+    ("Regular", 360, 0, 0.5),           # == the fvar default
     ("Medium", 500, 0, 0.5),
     ("Bold", 700, 0, 0.5),
     ("Black", 900, 0, 0.5),
     ("Light Italic", 300, -15, 0.5),
-    ("Italic", 375, -15, 0.5),
+    ("Italic", 360, -15, 0.5),
     ("Medium Italic", 500, -15, 0.5),
     ("Bold Italic", 700, -15, 0.5),
     ("Black Italic", 900, -15, 0.5),
@@ -749,7 +749,7 @@ def build(src_path: str, out_path: str, options: dict | None = None) -> None:
     # the axis is dropped — there's no useful Sans (proportional) mode in a
     # terminal, and baking MONO out removes ~half of Recursive's gvar deltas
     # (≈28% smaller VF) plus the MONO-conditioned feature variations. The other
-    # axes are only REBASED (default moved, full range kept): CASL=0, wght=375,
+    # axes are only REBASED (default moved, full range kept): CASL=0, wght=360,
     # with slnt/CRSV still fully reachable. Set "Pure Mono: false" in the config to
     # keep MONO live instead.
     pure_mono = options.get("Pure Mono", True)

@@ -45,8 +45,8 @@ font-feature = moxy,lilx
 font-variation = CASL=1
 ```
 
-`wght=375` is already the variable font's default, so leave it out unless you
-want a different weight. In Ghostty, setting a redundant `wght=375` can interfere
+`wght=360` is already the variable font's default, so leave it out unless you
+want a different weight. In Ghostty, setting a redundant `wght=360` can interfere
 with the visible `CASL` change on macOS.
 
 Most editors keep contextual alternates (`calt`) on by default; Moxy uses `calt`
