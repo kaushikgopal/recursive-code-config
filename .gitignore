@@ -187,4 +187,7 @@ node_modules
 
 ##############################################################################
 ### Local agent working notes / artifacts (not source)
-.agents/
+.agents/*
+!.agents/dox/
+.agents/dox/*
+!.agents/dox/.gitkeep
