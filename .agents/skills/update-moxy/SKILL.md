@@ -1,3 +1,8 @@
+---
+name: update-moxy
+description: Automates building, versioning, releasing, and publishing the Moxy font. Use when asked to update or release Moxy.
+---
+
 # /update-moxy
 
 Automate the full release loop for the **Moxy** font (ships the static instances
