@@ -84,9 +84,10 @@ details):
   opt-in the same way. The bare font renders Recursive's letterforms and
   Recursive's native parens/dashes/backslash.
 - Two forward opt-in features are added on top:
-  - `moxy` — bundles Recursive's `ss02 ss03 ss06 ss09 ss10 ss11 titl` lookups,
-    so one toggle gives the Moxy letterform set (single-story `g`, simplified
-    `f r 6 9 1`, dotted `0`, fancy long-tail `Q`). Each member also stays
+  - `moxy` — bundles Recursive's `ss02 ss03 ss06 ss08 ss09 ss10 ss11 titl`
+    lookups, so one toggle gives the Moxy letterform set (single-story `g`,
+    simplified `f r 6 9 1`, shortened-terminal `C`, serifless `L/Z`, dotted `0`,
+    fancy long-tail `Q`). Each member also stays
     independently available under its own tag.
   - `lilx` — the Lilex borrowings: curvy parens (cv13), connected dashes/bars
     (cv11), a thin escape-only backslash.
@@ -108,7 +109,7 @@ axis instances, line-height / spacing, and which features are frozen on:
 - **Borrowed Glyphs / Join Dashes / Add Characters / Stylistic Sets** — the Lilex
   tweaks grafted in (curvy parens, connected dashes/bars, thin backslash, added
   arrows).
-- **Features** (`ss02 ss03 ss06 ss09 ss10 ss11 titl`) — Recursive's own stylistic
+- **Features** (`ss02 ss03 ss06 ss08 ss09 ss10 ss11 titl`) — Recursive's own stylistic
   sets (plus the `titl` titling Q) frozen into the static output. Remove an entry
   to keep Recursive's plain form for that glyph instead; add others (see the
   comments in the file) to bake them on.

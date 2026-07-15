@@ -11,7 +11,7 @@ with no toggles.
 
 | Feature | What it turns ON | Default |
 |---|---|---|
-| `moxy` | Recursive letterform set: single-story `g`, simp `f`/`l`/`6`/`9`/`1`, italic diagonals, serifless `L`/`Z`, dotted `0`, fancy long-tail `Q` (bundles `ss02 ss03 ss05 ss07 ss08 ss09 ss10 ss11 titl`) | off |
+| `moxy` | Recursive letterform set: single-story `g`, simp `f`/`l`/`6`/`9`/`1`, italic diagonals, shortened-terminal `C`, serifless `L`/`Z`, dotted `0`, fancy long-tail `Q` (bundles `ss02 ss03 ss05 ss07 ss08 ss09 ss10 ss11 titl`) | off |
 | `lilx` | Lilex borrowings: curvy parens, connected dashes/bars, thin escape backslash | off |
 
 - **Full Moxy look**: `font-feature = moxy, lilx`
@@ -36,6 +36,7 @@ Three scopes — say which:
 | g | single-story | `ss02` | add `ss02` to `Moxy Bundle:` | add `ss02` to `Features:` |
 | L, Z | serifed (Recursive default) | — | ensure `ss08` is NOT in `Moxy Bundle:` | remove `ss08` from `Features:` |
 | L, Z | serifless | `ss08` | add `ss08` to `Moxy Bundle:` | add `ss08` to `Features:` |
+| C | shortened upper terminal; bottom unchanged | `ss08` custom alternate | add `ss08` to `Moxy Bundle:` | add `ss08` to `Features:` |
 | f | simplified | `ss03` | add `ss03` to `Moxy Bundle:` | add `ss03` to `Features:` |
 | l | simplified | `ss05` | add `ss05` to `Moxy Bundle:` | add `ss05` to `Features:` |
 | k w x y z (italic) | simplified diagonals | `ss07` | add `ss07` to `Moxy Bundle:` | add `ss07` to `Features:` |

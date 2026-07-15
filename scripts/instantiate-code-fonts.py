@@ -104,6 +104,10 @@ def splitFont(
 
     # access font as TTFont object
     varfont = ttLib.TTFont(fontPath)
+    if "ss08" in fontOptions.get("Features", []):
+        from glyph_tweaks import add_shortened_c_alternate
+        print("\n\t• Added shortened-terminal C alternate to ss08")
+        add_shortened_c_alternate(varfont)
 
     fontFileName = os.path.basename(fontPath)
 

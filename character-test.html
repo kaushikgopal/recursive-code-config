@@ -31,6 +31,16 @@
     src:url("font-data/Recursive_VF_1.085.ttf") format("truetype");
     font-weight:300 1000;
   }
+  @font-face{
+    font-family:"MoxyV0";
+    src:url("fonts/Moxy-Versions/version-0/variable/Moxy%5BCASL%2Cwght%2Cslnt%2CCRSV%5D.ttf") format("truetype");
+    font-weight:300 1000;
+  }
+  @font-face{
+    font-family:"MoxyV4";
+    src:url("fonts/Moxy-Versions/version-4/variable/Moxy%5BCASL%2Cwght%2Cslnt%2CCRSV%5D.ttf") format("truetype");
+    font-weight:300 1000;
+  }
 
   body{background:var(--bg); color:var(--ink); font:16px/1.5 var(--font);
     margin:0; padding:32px 24px 90px;}
@@ -110,6 +120,15 @@
     .matrix-col + .matrix-col{border-left:none; border-top:1px solid var(--line);}}
 
   .caption{color:var(--muted); font-size:12px; margin:2px 0 14px; max-width:70ch;}
+  .version-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; max-width:620px;}
+  .version-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; text-align:center;}
+  .version-card .version-name{font:600 12px/1 var(--font); color:var(--muted); margin-bottom:10px;}
+  .version-card .version-glyph{font:180px/1 "MoxyV4",monospace; font-feature-settings:"moxy" 1;
+    font-variation-settings:"wght" 400,"CASL" 0;}
+  .version-card.v0 .version-glyph{font-family:"MoxyV0",monospace;}
+  .version-card.v4 .version-glyph{font-family:"MoxyV4",monospace;}
+  @media (max-width:820px){.version-grid{grid-template-columns:1fr; max-width:300px;}}
 
   .warn{display:none; margin:0 0 18px; padding:12px 14px; border-radius:var(--radius);
     background:#fff4ce; color:#7a5a00; border:1px solid #e6cf6a; font-size:13px; line-height:1.5;}
@@ -144,6 +163,14 @@
 <p class="lead">The <strong>Moxy</strong> column shows the full Moxy look (the variable font with
 <code>moxy</code> + <code>lilx</code> enabled). The <strong>Recursive</strong> column shows the
 source Recursive at the matching weight, rendered monospaced so the forms are directly comparable.</p>
+
+<h2>C terminal versions</h2>
+<p class="caption">Version 0 is the original Moxy VF. Version 4 changes only the upper terminal, shown here
+at <code>CASL=0</code> and <code>wght=400</code>, with <code>moxy</code> enabled.</p>
+<div class="version-grid">
+  <div class="version-card v0"><div class="version-name">version 0 · original</div><div class="version-glyph">C</div></div>
+  <div class="version-card v4"><div class="version-name">version 4 · top shortened</div><div class="version-glyph">C</div></div>
+</div>
 
 <h2>Changed characters</h2>
 

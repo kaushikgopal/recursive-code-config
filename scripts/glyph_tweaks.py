@@ -25,9 +25,12 @@ glyphs.
 
 from __future__ import annotations
 
+from copy import deepcopy
 import math
 
 from fontTools.ttLib.tables.TupleVariation import TupleVariation
+from fontTools.ttLib.tables import otTables as ot
+from fontTools.otlLib import builder as otl
 from fontTools.varLib.models import VariationModel, supportScalar
 
 AXIS_ORDER = ["MONO", "CASL", "wght", "slnt", "CRSV"]
@@ -293,6 +296,221 @@ def rebuild_percent_variable(font):
     _rebuild_glyph_variable(
         font, "percent", reshape_percent_outline,
         lambda loc: percent_params(_WGHT_MIN + loc.get("wght", 0.0) * (_WGHT_MAX - _WGHT_MIN)),
+    )
+
+
+# --------------------------------------------------------------------------------------
+# ss08: shortened-terminal C alternate. This is kept as an alternate rather than a
+# baked-in change so the VF remains plain Recursive until ss08/moxy is enabled.
+
+
+def reshape_c_outline(coords, end_pts, flags):
+    """Shorten the upper vertical terminal of Recursive's uppercase ``C``.
+
+    Recursive's C is one 63-point contour. Its terminals take a long detour
+    down/up the right edge before closing the stroke. Keep that original
+    character, including the small outer curve, but move the lower end of each
+    vertical leg toward the bowl so the protrusions are shorter. The contour
+    topology stays unchanged, making the result safe to interpolate across
+    Recursive's existing gvar masters.
+
+    The upper terminal is cut at roughly 47% of its original leg length, which
+    matches the cutoff explored in the version-0 screenshot. The lower terminal
+    remains unchanged.
+    """
+    # Recursive 1.085's C is a stable, point-compatible 63-point contour.
+    if len(end_pts) != 1 or end_pts[0] != 62 or len(coords) != 63:
+        raise ValueError(
+            f"unexpected C structure: {len(coords)} points, end points {end_pts}"
+        )
+
+    original = [tuple(p) for p in coords]
+    out = list(original)
+
+    # Upper terminal: retain the original outer nib (15–19), but shorten the
+    # outer vertical leg ending at point 22. The horizontal cap and inner edge
+    # (23–32) follow the new cutoff while retaining their original curvature.
+    old_inner_y = original[22][1]
+    upper_cut = original[19][1] + 0.47 * (old_inner_y - original[19][1])
+    upper_scale = (original[19][1] - upper_cut) / (original[19][1] - old_inner_y)
+    for i in (20, 21, 22):
+        out[i] = (
+            original[i][0],
+            upper_cut + (original[i][1] - old_inner_y) * upper_scale,
+        )
+    for i in range(23, 29):
+        out[i] = (original[i][0], upper_cut)
+    old_inner_edge_start = original[28][1]
+    old_inner_edge_end = original[32][1]
+    for i in range(29, 33):
+        t = (original[i][1] - old_inner_edge_start) / (
+            old_inner_edge_end - old_inner_edge_start
+        )
+        out[i] = (
+            original[i][0],
+            upper_cut + t * (old_inner_edge_end - upper_cut),
+        )
+
+    # The lower terminal is intentionally left at its Recursive coordinates.
+    return out, list(end_pts), list(flags)
+
+
+def reshape_c_glyph_outline(coords, end_pts, flags):
+    """Apply the shortened-terminal C shape inside an accented C glyph."""
+    slices = _contours(end_pts)
+    candidates = []
+    for index, sl in enumerate(slices):
+        box = _bbox(coords, sl)
+        if sl[1] - sl[0] == 63 and box[1] < 0 and box[3] > 600 and box[0] < 100:
+            candidates.append(index)
+    if len(candidates) != 1:
+        raise ValueError(f"could not identify C contour in accented glyph: {end_pts}")
+
+    index = candidates[0]
+    start, stop = slices[index]
+    local_coords, _, local_flags = reshape_c_outline(
+        coords[start:stop], [stop - start - 1], flags[start:stop]
+    )
+    out = list(coords)
+    out[start:stop] = local_coords
+    return out, list(end_pts), list(flags)
+
+
+def _append_feature_mapping(font, feature_tag, mapping):
+    """Append a single-sub lookup to an existing feature record."""
+    gsub = font["GSUB"].table
+    records = [r for r in gsub.FeatureList.FeatureRecord if r.FeatureTag == feature_tag]
+    if len(records) != 1:
+        raise ValueError(f"expected one {feature_tag} feature record")
+
+    lookup = ot.Lookup()
+    lookup.LookupType = 1
+    lookup.LookupFlag = 0
+    lookup.SubTable = [otl.buildSingleSubstSubtable(mapping)]
+    lookup.SubTableCount = 1
+    lookup_index = len(gsub.LookupList.Lookup)
+    gsub.LookupList.Lookup.append(lookup)
+    gsub.LookupList.LookupCount = len(gsub.LookupList.Lookup)
+
+    feature = records[0].Feature
+    feature.LookupListIndex.append(lookup_index)
+    feature.LookupCount = len(feature.LookupListIndex)
+
+
+def _add_variable_reshaped_alternate(font, source_name, alternate_name, outline_fn):
+    """Add a variable alternate by reshaping every source gvar master."""
+    glyf = font["glyf"]
+    gvar = font["gvar"]
+    source = glyf[source_name]
+    base = [tuple(p) for p in source.coordinates]
+    npts = len(base)
+    tvs = gvar.variations.get(source_name, [])
+    end_pts = list(source.endPtsOfContours)
+    flags = list(source.flags)
+
+    def orig_abs(loc):
+        points = [list(p) for p in base]
+        for tv in tvs:
+            scalar = supportScalar(loc, tv.axes)
+            if not scalar:
+                continue
+            for i in range(npts):
+                delta = tv.coordinates[i]
+                if delta is not None:
+                    points[i][0] += scalar * delta[0]
+                    points[i][1] += scalar * delta[1]
+        return [(x, y) for x, y in points]
+
+    locs = [{}]
+    seen = {()}
+    for tv in tvs:
+        peak = {tag: lo_pk_hi[1] for tag, lo_pk_hi in tv.axes.items()}
+        key = tuple(sorted(peak.items()))
+        if key not in seen:
+            seen.add(key)
+            locs.append(peak)
+
+    reshaped = {}
+    new_end_pts = new_flags = None
+    for loc in locs:
+        nc, ne, nf = outline_fn(orig_abs(loc), end_pts, flags)
+        if len(nc) != npts or ne != end_pts or nf != flags:
+            raise ValueError(f"{alternate_name}: reshape changed outline topology")
+        reshaped[tuple(sorted(loc.items()))] = nc
+        new_end_pts, new_flags = ne, nf
+
+    model = VariationModel(locs, axisOrder=AXIS_ORDER)
+    ordered = [reshaped[tuple(sorted(loc.items()))] for loc in locs]
+    deltas_x = [model.getDeltas([ordered[m][i][0] for m in range(len(ordered))])
+                for i in range(npts)]
+    deltas_y = [model.getDeltas([ordered[m][i][1] for m in range(len(ordered))])
+                for i in range(npts)]
+
+    if alternate_name not in font.getGlyphOrder():
+        font.setGlyphOrder(font.getGlyphOrder() + [alternate_name])
+    glyf[alternate_name] = deepcopy(source)
+
+    base_idx = model.supports.index({})
+    default_coords = [
+        (deltas_x[i][base_idx], deltas_y[i][base_idx]) for i in range(npts)
+    ]
+    _write_outline(font, alternate_name, default_coords, new_end_pts, new_flags)
+
+    new_variations = []
+    for sidx, support in enumerate(model.supports):
+        if support == {}:
+            continue
+        deltas = [
+            (round(deltas_x[i][sidx]), round(deltas_y[i][sidx]))
+            for i in range(npts)
+        ]
+        deltas += [(0, 0)] * 4
+        new_variations.append(TupleVariation(dict(support), deltas))
+    gvar.variations[alternate_name] = new_variations
+
+
+def _add_composite_alternate(font, source_name, alternate_name):
+    """Copy a C composite and make its base component use the shortened C."""
+    glyf = font["glyf"]
+    if alternate_name not in font.getGlyphOrder():
+        font.setGlyphOrder(font.getGlyphOrder() + [alternate_name])
+    glyph = deepcopy(glyf[source_name])
+    for component in glyph.components:
+        if component.glyphName == "C":
+            component.glyphName = "C.sans"
+    glyf[alternate_name] = glyph
+    source_advance, source_lsb = font["hmtx"].metrics[source_name]
+    font["hmtx"].metrics[alternate_name] = (source_advance, source_lsb)
+    font["gvar"].variations[alternate_name] = deepcopy(
+        font["gvar"].variations.get(source_name, [])
+    )
+
+
+def add_shortened_c_alternate(font):
+    """Add the shortened-terminal C alternates to Recursive's ``ss08`` feature."""
+    if "C.sans" in font.getGlyphOrder():
+        return
+
+    _add_variable_reshaped_alternate(font, "C", "C.sans", reshape_c_outline)
+    for source_name in ("Cdotaccent", "Ccaron"):
+        _add_variable_reshaped_alternate(
+            font, source_name, f"{source_name}.sans", reshape_c_glyph_outline
+        )
+    for source_name in ("Ccedilla", "Cacute", "Ccircumflex", "uni1E08"):
+        _add_composite_alternate(font, source_name, f"{source_name}.sans")
+
+    _append_feature_mapping(
+        font,
+        "ss08",
+        {
+            "C": "C.sans",
+            "Ccedilla": "Ccedilla.sans",
+            "Cacute": "Cacute.sans",
+            "Ccircumflex": "Ccircumflex.sans",
+            "Cdotaccent": "Cdotaccent.sans",
+            "Ccaron": "Ccaron.sans",
+            "uni1E08": "uni1E08.sans",
+        },
     )
 
 

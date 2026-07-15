@@ -13,8 +13,9 @@ dropped — see "Pure Mono" in the config.)
 Two forward opt-in features:
 
   * ``moxy`` (custom 4-char feature tag) — bundles Recursive's own
-    ss02/ss03/ss06/ss09/ss10/ss11/titl lookups, so one toggle applies the Moxy
-    letterform set: single-story g, simplified f/r/6/9/1, dotted 0, fancy Q.
+    ss02/ss03/ss06/ss08/ss09/ss10/ss11/titl lookups, so one toggle applies the
+    Moxy letterform set: single-story g, simplified f/r/6/9/1, shortened-terminal C,
+    serifless L/Z, dotted 0, and fancy Q.
     Each member also stays independently available under its own tag.
   * ``lilx`` (custom 4-char feature tag) — the ported-from-Lilex tweaks:
     curvy parens (cv13), connected dashes, connected bars (cv11), a thin
@@ -88,7 +89,7 @@ LICENSE_URL = "https://openfontlicense.org"
 # Recursive source features bundled under the forward `moxy` toggle (one switch
 # for the full Moxy letterform set). Each member also stays independently
 # available under its own tag.
-MOXY_BUNDLE = ["ss02", "ss03", "ss06", "ss09", "ss10", "ss11", "titl"]
+MOXY_BUNDLE = ["ss02", "ss03", "ss06", "ss08", "ss09", "ss10", "ss11", "titl"]
 
 
 def load_config(config_path: str) -> dict:
@@ -683,6 +684,8 @@ def build(src_path: str, out_path: str, options: dict | None = None) -> None:
     # geometry) — no external outline is read or shipped. All baked into Moxy
     # (not configurable).
     import glyph_tweaks
+    print("Adding ss08 shortened-terminal C alternate")
+    glyph_tweaks.add_shortened_c_alternate(font)
     print("Applying glyph tweaks: percent, slash, backslash, checkmark, bullet")
     glyph_tweaks.draw_percent(font)
     glyph_tweaks.draw_slash(font)
